@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXUS//SENTINEL · Identity Protection &amp; Threat Intelligence</title>
+  <meta name="description" content="NEXUS//SENTINEL: hardened authentication and threat-intelligence dashboard. Lab 1 demo build with synthetic data.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="font-sans antialiased">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-highlight focus:px-4 focus:py-2 focus:text-bg">Skip to content</a>
+
+  <!-- ============ HEADER + NAVIGATION ============ -->
+  <header class="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <a href="#top" class="font-display text-xl font-bold tracking-wider">
+            NEXUS<span class="text-highlight">//</span><span class="text-accent">SENTINEL</span>
+
+        </a>
+                <nav aria-label="Primary" class="hidden md:block">
+          <ul class="flex items-center gap-6 text-sm text-muted">
+            <li><a href="#overview" class="hover:text-highlight">Overview</a></li>
+            <li><a href="#analytics" class="hover:text-highlight">Analytics</a></li>
+            <li><a href="#events" class="hover:text-highlight">Events</a></li>
+            <li><a href="#identity" class="border border-border-strong px-4 py-2 text-text hover:border-highlight hover:text-highlight">Secure Sign-in</a></li>
+          </ul>
+        </nav>
+                 <button id="menu-btn" type="button" class="p-2 text-text md:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+
+    </div>
+        <nav id="mobile-menu" aria-label="Mobile" class="hidden border-t border-border md:hidden">
+      <ul class="flex flex-col px-4 py-2 text-muted">
+        <li><a href="#overview" class="block py-3 hover:text-highlight">Overview</a></li>
+        <li><a href="#analytics" class="block py-3 hover:text-highlight">Analytics</a></li>
+        <li><a href="#events" class="block py-3 hover:text-highlight">Events</a></li>
+        <li><a href="#identity" class="block py-3 hover:text-highlight">Secure Sign-in</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <main id="main">
+        <section id="top" class="hero-grid relative isolate overflow-hidden border-b border-border">
+      <svg class="network absolute inset-0 -z-10 h-full w-full" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <!-- links -->
+        <line class="link" x1="620" y1="120" x2="780" y2="80"/>
+        <line class="link packet" x1="780" y1="80" x2="950" y2="150"/>
+        <line class="link" x1="950" y1="150" x2="1100" y2="90"/>
+        <line class="link" x1="620" y1="120" x2="700" y2="260"/>
+        <line class="link" x1="780" y1="80" x2="700" y2="260"/>
+        <line class="link packet" x1="950" y1="150" x2="880" y2="300"/>
+        <line class="link" x1="1100" y1="90" x2="1050" y2="280"/>
+        <line class="link" x1="700" y1="260" x2="880" y2="300"/>
+        <line class="link packet" x1="880" y1="300" x2="1050" y2="280"/>
+        <line class="link" x1="700" y1="260" x2="600" y2="420"/>
+        <line class="link" x1="880" y1="300" x2="800" y2="460"/>
+        <line class="link" x1="1050" y1="280" x2="980" y2="430"/>
+        <line class="link" x1="980" y1="430" x2="1130" y2="470"/>
+        <line class="link packet" x1="600" y1="420" x2="800" y2="460"/>
+        <line class="link" x1="800" y1="460" x2="980" y2="430"/>
+        <line class="link" x1="600" y1="420" x2="720" y2="600"/>
+        <line class="link packet" x1="800" y1="460" x2="900" y2="620"/>
+        <line class="link" x1="980" y1="430" x2="1080" y2="610"/>
+        <line class="link" x1="720" y1="600" x2="900" y2="620"/>
+        <line class="link" x1="900" y1="620" x2="1080" y2="610"/>
+        <line class="link" x1="1130" y1="470" x2="1080" y2="610"/>
+        <!-- "blocked threat" flashes (crimson) -->
+        <line class="threat" x1="1100" y1="90" x2="1050" y2="280"/>
+        <line class="threat" x1="980" y1="430" x2="1130" y2="470" style="animation-delay:-3.5s"/>
+        <!-- nodes -->
+        <circle class="node" cx="620" cy="120" r="4"/>
+        <circle class="node" cx="780" cy="80" r="5"/>
+        <circle class="node" cx="950" cy="150" r="4"/>
+        <circle class="node" cx="1100" cy="90" r="5"/>
+        <circle class="node" cx="700" cy="260" r="5"/>
+        <circle class="node" cx="880" cy="300" r="6"/>
+        <circle class="node" cx="1050" cy="280" r="4"/>
+        <circle class="node" cx="600" cy="420" r="4"/>
+        <circle class="node" cx="800" cy="460" r="5"/>
+        <circle class="node" cx="980" cy="430" r="6"/>
+        <circle class="node" cx="1130" cy="470" r="4"/>
+        <circle class="node" cx="720" cy="600" r="5"/>
+        <circle class="node" cx="900" cy="620" r="4"/>
+        <circle class="node" cx="1080" cy="610" r="5"/>
+      </svg>
+      <!-- fade the network out under the text so it stays readable -->
+      <div class="absolute inset-0 -z-10 bg-linear-to-r from-bg via-bg/85 to-bg/20"></div>
+
+      <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 md:py-36 lg:px-8">
+        <p class="font-mono text-xs tracking-[0.2em] text-accent">// THREAT INTELLIGENCE · IDENTITY PROTECTION</p>
+        <h1 class="mt-4 font-display text-[clamp(2.75rem,9vw,6.5rem)] font-bold uppercase leading-[0.95] tracking-tight">
+          Identity.<br><span class="text-accent">Defended.</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg text-muted">
+          Hardened authentication and real-time threat visibility for the accounts that matter.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#analytics" class="chamfer-sm bg-accent px-6 py-3 font-semibold text-bg transition hover:-translate-y-0.5 hover:brightness-110">Launch Dashboard</a>
+          <a href="#identity" class="border border-border-strong px-6 py-3 font-semibold transition hover:border-highlight hover:text-highlight">Secure Sign-in</a>
+        </div>
+        <p class="mt-10 inline-flex items-center gap-2 font-mono text-xs text-highlight">
+          <span class="live-dot" aria-hidden="true"></span> LIVE SIMULATION · SYNTHETIC DATA
+        </p>
+      </div>
+    </section>
+
+    <!-- STEP 4: KPI CARDS + ANALYTICS -->
+         <section id="overview" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="font-mono text-xs tracking-[0.2em] text-accent">// 01 · OVERVIEW</p>
+          <h2 class="mt-2 font-display text-3xl font-bold uppercase md:text-4xl">Threat Overview</h2>
+        </div>
+        <p class="font-mono text-xs text-muted">LAST 24 H · SIMULATED</p>
+      </div>
+
+      <p class="mt-6 border-l-4 border-warn bg-surface-2 px-4 py-3 text-sm">
+        <strong class="text-warn">SIMULATED TELEMETRY:</strong> every figure on this page is synthetic demo data, not live data.
+      </p>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+        <article class="hud chamfer border border-border bg-surface p-6 transition hover:-translate-y-0.5">
+          <h3 class="text-sm text-muted">Failed logins (24 h)</h3>
+          <p class="mt-2 font-mono text-4xl font-semibold tabular-nums">1,936</p>
+          <p class="mt-2 font-mono text-xs text-critical-text">▲ 12% vs prior 24 h</p>
+        </article>
+
+        <!-- YOUR 3 CARDS GO HERE -->
+        <article class="hud chamfer border border-border bg-surface p-6 transition hover:-translate-y-0.5">
+          <h3 class="text-sm text-muted">Accounts locked</h3>
+          <p class="mt-2 font-mono text-4xl font-semibold tabular-nums">27</p>
+          <p class="mt-2 font-mono text-xs text-critical-text">▲ 4 vs prior 24 h</p>
+        </article>
+        <article class="hud chamfer border border-border bg-surface p-6 transition hover:-translate-y-0.5">
+          <h3 class="text-sm text-muted">MFA adoption</h3>
+          <p class="mt-2 font-mono text-4xl font-semibold tabular-nums">82%</p>
+          <p class="mt-2 font-mono text-xs text-ok">▲ 3 pts this month</p>
+        </article>
+        <article class="hud chamfer border border-border bg-surface p-6 transition hover:-translate-y-0.5">
+          <h3 class="text-sm text-muted">Active sessions</h3>
+          <p class="mt-2 font-mono text-4xl font-semibold tabular-nums">1,248</p>
+          <p class="mt-2 font-mono text-xs text-muted">▼ 2% vs prior 24 h</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- STEP 4b: ANALYTICS -->
+        <section id="analytics" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <p class="font-mono text-xs tracking-[0.2em] text-accent">// 02 · SECURITY ANALYTICS</p>
+      <h2 class="mt-2 font-display text-3xl font-bold uppercase md:text-4xl">Attack Analytics</h2>
+
+      <div class="mt-8 grid gap-4 lg:grid-cols-3">
+        <figure class="min-w-0 chamfer
+         border border-border bg-surface p-5 lg:col-span-2">
+          <figcaption class="flex flex-wrap justify-between gap-2">
+            <span class="font-semibold">Authentication attempts per hour</span>
+            <span class="font-mono text-xs text-muted">SIMULATED</span>
+          </figcaption>
+          <div class="relative mt-4 h-64 md:h-80">
+            <canvas id="authChart" role="img" aria-label="Line chart of successful versus failed sign-in attempts per hour over 24 hours. Failed attempts peak at 212 at 15:00."></canvas>
+          </div>
+        </figure>
+
+        <figure class="min-w-0 chamfer border border-border bg-surface p-5">
+          <figcaption class="flex flex-wrap justify-between gap-2">
+            <span class="font-semibold">Attack types</span>
+            <span class="font-mono text-xs text-muted">TOTAL 1,936</span>
+          </figcaption>
+          <div class="relative mt-4 h-80">
+            <canvas id="attackChart" role="img" aria-label="Doughnut chart of attack types: brute force 812, credential stuffing 604, password spray 371, MFA fatigue 149."></canvas>
+          </div>
+        </figure>
+
+        <figure class="min-w-0 chamfer border border-border bg-surface p-5 lg:col-span-3">
+          <figcaption class="flex flex-wrap justify-between gap-2">
+            <span class="font-semibold">Top 5 source IPs by failed attempts</span>
+            <span class="font-mono text-xs text-muted">RFC 5737 DOCUMENTATION IPs</span>
+          </figcaption>
+          <div class="relative mt-4 h-64">
+            <canvas id="ipChart" role="img" aria-label="Bar chart of the top five source IPs: 203.0.113.42 with 318, 198.51.100.17 with 241, 192.0.2.88 with 187, 203.0.113.9 with 152, 198.51.100.203 with 119."></canvas>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- STEP 5: EVENTS TABLE -->
+         <section id="events" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <p class="font-mono text-xs tracking-[0.2em] text-accent">// 03 · EVENT STREAM</p>
+      <h2 class="mt-2 font-display text-3xl font-bold uppercase md:text-4xl">Recent Security Events</h2>
+
+      <!-- overflow-x-auto: the TABLE scrolls on phones, never the page -->
+      <div class="mt-8 overflow-x-auto border border-border bg-surface">
+        <table class="w-full min-w-[720px] text-left text-sm">
+          <caption class="sr-only">Recent simulated security events</caption>
+          <thead class="bg-surface-2 font-mono text-xs uppercase tracking-wider text-muted">
+            <tr>
+              <th scope="col" class="px-4 py-3">Time</th>
+              <th scope="col" class="px-4 py-3">Event</th>
+              <th scope="col" class="px-4 py-3">Account</th>
+              <th scope="col" class="px-4 py-3">Source IP</th>
+              <th scope="col" class="px-4 py-3">Severity</th>
+              <th scope="col" class="px-4 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            <tr><td class="px-4 py-3 font-mono">16:42</td><td class="px-4 py-3">Account lockout triggered</td><td class="px-4 py-3 text-muted">j.doe@example.test</td><td class="px-4 py-3 font-mono">203.0.113.42</td><td class="px-4 py-3"><span class="badge badge-critical">CRITICAL</span></td><td class="px-4 py-3">Locked</td></tr>
+            <tr><td class="px-4 py-3 font-mono">16:38</td><td class="px-4 py-3">Credential-stuffing burst (54 attempts)</td><td class="px-4 py-3 text-muted">multiple</td><td class="px-4 py-3 font-mono">198.51.100.17</td><td class="px-4 py-3"><span class="badge badge-high">HIGH</span></td><td class="px-4 py-3">Blocked</td></tr>
+            <tr><td class="px-4 py-3 font-mono">16:21</td><td class="px-4 py-3">MFA push denied ×3</td><td class="px-4 py-3 text-muted">a.rivera@example.test</td><td class="px-4 py-3 font-mono">192.0.2.88</td><td class="px-4 py-3"><span class="badge badge-high">HIGH</span></td><td class="px-4 py-3">Challenged</td></tr>
+            <tr><td class="px-4 py-3 font-mono">15:57</td><td class="px-4 py-3">Password spray across 31 accounts</td><td class="px-4 py-3 text-muted">multiple</td><td class="px-4 py-3 font-mono">203.0.113.9</td><td class="px-4 py-3"><span class="badge badge-medium">MEDIUM</span></td><td class="px-4 py-3">Rate-limited</td></tr>
+            <!-- YOUR 2 ROWS GO HERE -->
+            <tr><td class="px-4 py-3 font-mono">15:40</td><td class="px-4 py-3">Sign-in from new device</td><td class="px-4 py-3 text-muted">m.chan@example.test</td><td class="px-4 py-3 font-mono">198.51.100.203</td><td class="px-4 py-3"><span class="badge badge-low">LOW</span></td><td class="px-4 py-3">Allowed</td></tr>
+            <tr><td class="px-4 py-3 font-mono">15:12</td><td class="px-4 py-3">Password changed</td><td class="px-4 py-3 text-muted">s.okafor@example.test</td><td class="px-4 py-3 font-mono">192.0.2.14</td><td class="px-4 py-3"><span class="badge badge-low">LOW</span></td><td class="px-4 py-3">Allowed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- STEP 6: IDENTITY + MFA -->
+        <section id="identity" class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <p class="font-mono text-xs tracking-[0.2em] text-accent">// 04 · IDENTITY PROTECTION</p>
+      <h2 class="mt-2 font-display text-3xl font-bold uppercase md:text-4xl">Secure Sign-in Preview</h2>
+
+      <p class="mt-6 border-l-4 border-warn bg-surface-2 px-4 py-3 text-sm">
+        <strong class="text-warn">DEMO ONLY:</strong> there is no real authentication. Nothing you type is stored or sent anywhere.
+      </p>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        <!-- demo form: no action attribute, JS always blocks submission -->
+        <form id="demo-form" novalidate class="chamfer border border-border bg-surface p-6">
+          <label for="email" class="block text-sm font-medium">Email</label>
+          <input id="email" name="email" type="email" autocomplete="username" required
+                 class="mt-1 w-full border border-border-strong bg-bg px-3 py-2 focus:border-highlight focus:outline-none">
+
+          <label for="password" class="mt-4 block text-sm font-medium">Password</label>
+          <div class="mt-1 flex">
+            <input id="password" name="password" type="password" autocomplete="current-password" required
+                   class="w-full border border-border-strong bg-bg px-3 py-2 focus:border-highlight focus:outline-none" aria-describedby="strength-label">
+            <button id="toggle-pw" type="button" aria-pressed="false" class="border border-l-0 border-border-strong px-3 text-sm text-muted hover:text-highlight">Show</button>
+          </div>
+
+          <!-- password-strength meter: main.js colours the 4 segments -->
+          <div id="strength-meter" class="mt-3 flex gap-1" aria-hidden="true">
+            <span class="meter-seg"></span><span class="meter-seg"></span><span class="meter-seg"></span><span class="meter-seg"></span>
+          </div>
+          <p id="strength-label" class="mt-1 font-mono text-xs text-muted" aria-live="polite">Strength: —</p>
+
+          <fieldset class="mt-6 border-t border-border pt-4">
+            <legend class="pr-2 font-mono text-xs tracking-wider text-accent">STEP 2 · MFA VERIFICATION (PREVIEW)</legend>
+            <label for="otp" class="block text-sm font-medium">6-digit authenticator code</label>
+            <input id="otp" name="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="••••••"
+                   class="mt-1 w-40 border border-border-strong bg-bg px-3 py-2 font-mono tracking-[0.4em] focus:border-highlight focus:outline-none">
+          </fieldset>
+        
+          <button type="submit" class="chamfer-sm mt-6 w-full bg-accent px-6 py-3 font-semibold text-bg transition hover:brightness-110">Sign in (demo)</button>
+          <p id="form-msg" class="mt-4 min-h-5 text-sm" aria-live="polite"></p>
+        </form>
+
+        <!-- protection layers + tips -->
+        <div class="grid gap-4">
+          <div class="border border-border bg-surface p-6">
+            <h3 class="font-semibold">Protection layers <span class="ml-2 font-mono text-xs text-accent">P31 · CORE</span></h3>
+            <ul class="mt-4 space-y-3 text-sm text-muted">
+              <li><span class="text-highlight">▸</span> Slow, salted password hashing</li>
+              <li><span class="text-highlight">▸</span> Rate limiting and progressive account lockout</li>
+              <li><span class="text-highlight">▸</span> TOTP multi-factor authentication</li>
+              <li><span class="text-highlight">▸</span> Short-lived sessions with secure cookies</li>
+            </ul>
+          </div>
+          <div class="border border-border bg-surface p-6">
+            <h3 class="font-semibold">Security tips</h3>
+            <ul class="mt-4 space-y-3 text-sm text-muted">
+              <li>Use a long passphrase, not a short password.</li>
+              <li>Turn on MFA everywhere it is offered.</li>
+              <li>Never reuse a password across sites.</li>
+              <li>NEXUS//SENTINEL will never ask for your password by email.</li>
+            </ul>
+          </div>
+          <div class="border border-dashed border-border-strong p-6">
+            <h3 class="font-semibold">Log Analysis <span class="ml-2 font-mono text-xs text-muted">P35 · PLANNED · PENDING APPROVAL</span></h3>
+            <p class="mt-2 text-sm text-muted">Parse web server access logs to surface scanners and anomaly spikes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="border-t border-border bg-surface">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 text-sm text-muted sm:px-6 md:grid-cols-3 lg:px-8">
+      <div>
+        <p class="font-display text-lg font-bold text-text">NEXUS<span class="text-highlight">//</span><span class="text-accent">SENTINEL</span></p>
+        <p class="mt-2">Cybersecurity intelligence and identity protection platform.</p>
+      </div>
+      <div>
+        <h2 class="font-mono text-xs tracking-wider text-accent">ACADEMIC PROJECT</h2>
+        <ul class="mt-2 space-y-1">
+          <li>Full Stack Development · 8th Semester · Lab 1</li>
+          <li>Problem 31: Hardened Authentication Service</li>
+          <li>Problem 35: Web Server Log Analyser (pending approval)</li>
+          <li>Khushi Kothari · 2340130 · 8BScCSHons</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="font-mono text-xs tracking-wider text-warn">DEMO BUILD · SYNTHETIC DATA</h2>
+        <p class="mt-2">No real authentication. Nothing is stored or sent. IPs are RFC 5737 documentation addresses.</p>
+        <p class="mt-4">© <span id="year">2026</span> NEXUS//SENTINEL</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- scripts: Chart.js (local) → data → charts → page behaviour. "defer" keeps this order. -->
+  <script src="assets/vendor/chart.umd.js" defer></script>
+  <script src="assets/js/mock-data.js" defer></script>
+  <script src="assets/js/charts.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
