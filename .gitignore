@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Environment / secrets (none expected in Lab 1, but never commit them)
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Note: lab-1/*/assets/css/styles.css (compiled Tailwind) IS committed on purpose.
